@@ -179,8 +179,6 @@
   border: 1px solid color-mix(in oklab, var(--color-primary-glow) 40%, transparent);
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
   position: relative; overflow: hidden;
-}
-@utility btn-luxury {
   &:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
 }
 @utility btn-ghost-luxury {
@@ -192,8 +190,6 @@
   color: var(--color-foreground);
   border: 1px solid color-mix(in oklab, var(--color-foreground) 30%, transparent);
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-}
-@utility btn-ghost-luxury {
   &:hover { border-color: var(--color-primary-glow); color: var(--color-primary-glow); }
 }
 
@@ -234,4 +230,3 @@
 /* Hide scrollbar for horizontal scrollers */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
-}
