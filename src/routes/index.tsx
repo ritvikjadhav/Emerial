@@ -13,6 +13,23 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const PARTICLES = [
+  { t: 12, l: 8, d: 7.5, a: 0.2 },
+  { t: 23, l: 74, d: 9, a: 1.4 },
+  { t: 38, l: 32, d: 6, a: 2.1 },
+  { t: 49, l: 88, d: 10, a: 0.6 },
+  { t: 61, l: 15, d: 8, a: 3.1 },
+  { t: 72, l: 55, d: 7, a: 1.8 },
+  { t: 84, l: 26, d: 11, a: 0.9 },
+  { t: 18, l: 46, d: 8.5, a: 2.4 },
+  { t: 55, l: 68, d: 6.5, a: 1.2 },
+  { t: 30, l: 90, d: 9.5, a: 0.4 },
+  { t: 66, l: 40, d: 7.2, a: 2.7 },
+  { t: 44, l: 12, d: 10.5, a: 1.6 },
+  { t: 78, l: 78, d: 8.2, a: 0.3 },
+  { t: 90, l: 58, d: 6.8, a: 2.9 },
+];
+
 function Index() {
   const [active, setActive] = useState<Product | null>(null);
   const featured = products.find((p) => p.id === "carbon-legacy")!;
@@ -26,15 +43,14 @@ function Index() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-background)_75%)] z-10" />
           <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-primary/20 blur-[140px]" />
           <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-primary-glow/10 blur-[120px]" />
-          {/* particles */}
-          {Array.from({ length: 14 }).map((_, i) => (
+          {PARTICLES.map((p, i) => (
             <span
               key={i}
               className="absolute h-1 w-1 rounded-full bg-primary-glow/40"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animation: `float-slow ${6 + Math.random() * 6}s ease-in-out ${Math.random() * 4}s infinite`,
+                top: `${p.t}%`,
+                left: `${p.l}%`,
+                animation: `float-slow ${p.d}s ease-in-out ${p.a}s infinite`,
                 boxShadow: "0 0 12px rgba(45,212,168,0.6)",
               }}
             />
