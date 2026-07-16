@@ -8,6 +8,9 @@ import carbonLegacy from "@/assets/watch-carbon-legacy.jpg";
 import emeraldTorque from "@/assets/watch-emerald-torque.jpg";
 import pearlAura from "@/assets/watch-pearl-aura.jpg";
 import sapphireMuse from "@/assets/watch-sapphire-muse.jpg";
+import regaliaImg from "@/assets/collection-regalia.jpg";
+import abyssImg from "@/assets/collection-abyss.jpg";
+import apexImg from "@/assets/collection-apex.jpg";
 
 export type Collection = "Regalia" | "Abyss" | "Apex";
 
@@ -229,21 +232,21 @@ export const collections: {
     tagline: "The flagship. The heirloom.",
     description:
       "Four hand-finished pieces built over months, not weeks. Tourbillons, skeleton architecture, precious metals.",
-    image: "/src/assets/collection-regalia.jpg",
+    image: regaliaImg,
     count: 4,
   },
   {
     name: "Abyss",
     tagline: "Depth, engineered.",
     description: "Professional dive instruments certified to 300 meters. Legibility, luminescence, discipline.",
-    image: "/src/assets/collection-abyss.jpg",
+    image: abyssImg,
     count: 3,
   },
   {
     name: "Apex",
     tagline: "Chronographs for the finish line.",
     description: "Column-wheel chronographs with motorsport DNA — carbon, ceramic, and titanium finishings.",
-    image: "/src/assets/collection-apex.jpg",
+    image: apexImg,
     count: 3,
   },
 ];
