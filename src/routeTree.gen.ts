@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TimepiecesRouteImport } from './routes/timepieces'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as CraftsmanshipRouteImport } from './routes/craftsmanship'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TimepiecesRoute = TimepiecesRouteImport.update({
+  id: '/timepieces',
+  path: '/timepieces',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CraftsmanshipRoute = CraftsmanshipRouteImport.update({
+  id: '/craftsmanship',
+  path: '/craftsmanship',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsRoute = CollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/journal': typeof JournalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/timepieces': typeof TimepiecesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/journal': typeof JournalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/timepieces': typeof TimepiecesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/collections': typeof CollectionsRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/journal': typeof JournalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/timepieces': typeof TimepiecesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/collections'
+    | '/contact'
+    | '/craftsmanship'
+    | '/journal'
+    | '/sitemap.xml'
+    | '/timepieces'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/collections'
+    | '/contact'
+    | '/craftsmanship'
+    | '/journal'
+    | '/sitemap.xml'
+    | '/timepieces'
+  id:
+    | '__root__'
+    | '/'
+    | '/collections'
+    | '/contact'
+    | '/craftsmanship'
+    | '/journal'
+    | '/sitemap.xml'
+    | '/timepieces'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CollectionsRoute: typeof CollectionsRoute
+  ContactRoute: typeof ContactRoute
+  CraftsmanshipRoute: typeof CraftsmanshipRoute
+  JournalRoute: typeof JournalRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TimepiecesRoute: typeof TimepiecesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/timepieces': {
+      id: '/timepieces'
+      path: '/timepieces'
+      fullPath: '/timepieces'
+      preLoaderRoute: typeof TimepiecesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/craftsmanship': {
+      id: '/craftsmanship'
+      path: '/craftsmanship'
+      fullPath: '/craftsmanship'
+      preLoaderRoute: typeof CraftsmanshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections': {
+      id: '/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CollectionsRoute: CollectionsRoute,
+  ContactRoute: ContactRoute,
+  CraftsmanshipRoute: CraftsmanshipRoute,
+  JournalRoute: JournalRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TimepiecesRoute: TimepiecesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
