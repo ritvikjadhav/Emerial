@@ -141,7 +141,6 @@ function Index() {
           </Reveal>
         </div>
       </section>
-
       {/* COLLECTIONS */}
       <section className="relative py-24">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -149,20 +148,23 @@ function Index() {
             <p className="eyebrow text-primary-glow mb-4">The Collections</p>
             <h2 className="font-display text-5xl md:text-7xl">Three languages,<br /><span className="italic">one voice.</span></h2>
           </Reveal>
-          <div className="grid lg:grid-cols-6 gap-6">
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {collections.map((c, i) => (
-              <Reveal key={c.name} delay={i * 120} className={c.name === "Regalia" ? "lg:col-span-6" : "lg:col-span-3"}>
+              <Reveal key={c.name} delay={i * 120}>
                 <Link to="/timepieces" search={{ c: c.name }} className="group relative block overflow-hidden bg-charcoal">
-                  <div className={`relative overflow-hidden ${c.name === "Regalia" ? "aspect-[21/9]" : "aspect-[4/5]"}`}>
-                    <img src={c.image} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[2000ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-110" />
+                  
+                  <div className="relative overflow-hidden aspect-[4/5] md:aspect-[3/4]">
+                    <img src={c.image} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-2000 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                   </div>
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">
+                  
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
                     <p className="eyebrow text-primary-glow mb-2">{c.count} Timepieces</p>
-                    <h3 className="font-display text-4xl lg:text-6xl">{c.name}</h3>
-                    <p className="font-display italic text-lg lg:text-2xl text-muted-foreground mt-2">{c.tagline}</p>
-                    <p className="text-sm text-muted-foreground mt-3 max-w-md">{c.description}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 eyebrow text-foreground group-hover:text-primary-glow transition-colors">
+                    <h3 className="font-display text-3xl md:text-5xl">{c.name}</h3>
+                    <p className="font-display italic text-base md:text-xl text-muted-foreground mt-2">{c.tagline}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mt-3 max-w-md">{c.description}</p>
+                    <span className="mt-4 md:mt-6 inline-flex items-center gap-2 eyebrow text-foreground group-hover:text-primary-glow transition-colors">
                       Discover <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -172,6 +174,7 @@ function Index() {
           </div>
         </div>
       </section>
+                             
 
       {/* CRAFTSMANSHIP */}
       <section className="relative py-32 bg-onyx">
@@ -282,55 +285,6 @@ function Index() {
               Each EMERIAL is numbered, registered, and accompanied by a certificate signed by the master watchmaker who assembled it.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* GALLERY */}
-      <section className="relative py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="flex items-baseline justify-between mb-12">
-            <div>
-              <p className="eyebrow text-primary-glow mb-3">@emerial</p>
-              <h2 className="font-display text-4xl md:text-5xl">From the atelier.</h2>
-            </div>
-            <a href="#" className="eyebrow hover:text-primary-glow hidden md:inline-flex">Follow on Instagram →</a>
-          </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-            {products.slice(0, 6).map((p, i) => (
-              <Reveal key={p.id} delay={i * 60}>
-                <div className="aspect-square overflow-hidden bg-charcoal group cursor-pointer" onClick={() => setActive(p)}>
-                  <img src={p.image} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="relative py-32 bg-onyx">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <Reveal>
-            <p className="eyebrow text-primary-glow mb-8">In their words</p>
-            <p className="font-display text-3xl md:text-5xl leading-tight italic">
-              "The Emerald Torque is the first watch I've owned that feels like an heirloom the moment it leaves the vitrine."
-            </p>
-            <p className="eyebrow mt-10">Alessandro V. · Milano</p>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-8 mt-20 text-left">
-            {[
-              { q: "A quiet obsession. The Carbon Legacy replaces my Royal Oak on most days.", a: "Marcus C., London" },
-              { q: "Sapphire Muse arrived in a box that felt like a small piece of the atelier.", a: "Isabelle R., Paris" },
-              { q: "The Aqua Diver survived a shipwreck. So did the certificate. I'm a customer forever.", a: "Kenji T., Tokyo" },
-            ].map((t) => (
-              <Reveal key={t.a}>
-                <div className="p-8 hairline bg-card/40 h-full">
-                  <p className="font-display text-xl italic leading-relaxed">"{t.q}"</p>
-                  <p className="eyebrow mt-6 text-primary-glow">{t.a}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
