@@ -1,327 +1,189 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ChevronDown, ArrowRight } from "lucide-react";
-import heroWatch from "@/assets/hero-watch.jpg";
-import craftsmanshipImg from "@/assets/craftsmanship.jpg";
-import { collections, products, formatPrice, type Product } from "@/lib/products";
-import { Reveal, Counter } from "@/components/site/Reveal";
-import { ProductModal } from "@/components/site/ProductModal";
-import { useCart } from "@/lib/cart";
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+@custom-variant dark (&:is(.dark *));
 
-const PARTICLES = [
-  { t: 12, l: 8, d: 7.5, a: 0.2 },
-  { t: 23, l: 74, d: 9, a: 1.4 },
-  { t: 38, l: 32, d: 6, a: 2.1 },
-  { t: 49, l: 88, d: 10, a: 0.6 },
-  { t: 61, l: 15, d: 8, a: 3.1 },
-  { t: 72, l: 55, d: 7, a: 1.8 },
-  { t: 84, l: 26, d: 11, a: 0.9 },
-  { t: 18, l: 46, d: 8.5, a: 2.4 },
-  { t: 55, l: 68, d: 6.5, a: 1.2 },
-  { t: 30, l: 90, d: 9.5, a: 0.4 },
-  { t: 66, l: 40, d: 7.2, a: 2.7 },
-  { t: 44, l: 12, d: 10.5, a: 1.6 },
-  { t: 78, l: 78, d: 8.2, a: 0.3 },
-  { t: 90, l: 58, d: 6.8, a: 2.9 },
-];
-
-function Index() {
-  const [active, setActive] = useState<Product | null>(null);
-  const featured = products.find((p) => p.id === "carbon-legacy")!;
-  const { add } = useCart();
-
-  return (
-    <>
-      {/* HERO SECTION */}
-      <section className="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden pt-36 pb-12 bg-background">
-        {/* Glowing Ambient Background Elements & Particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-background)_80%)] z-10" />
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary-glow/15 blur-[120px] mix-blend-screen" />
-          
-          {PARTICLES.map((p, i) => (
-            <span
-              key={i}
-              className="absolute h-1 w-1 rounded-full bg-primary-glow/40"
-              style={{
-                top: `${p.t}%`,
-                left: `${p.l}%`,
-                animation: `float-slow ${p.d}s ease-in-out ${p.a}s infinite`,
-                boxShadow: "0 0 12px rgba(45,212,168,0.6)",
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Centered Content Wrapper */}
-        <div className="relative z-20 mx-auto max-w-[1440px] px-6 lg:px-10 w-full flex flex-col items-center text-center flex-grow justify-center gap-12">
-          <div className="animate-rise max-w-2xl">
-            <p className="eyebrow mb-6 tracking-[0.4em] text-xs">Maison Emerial · Est. Genève</p>
-            <h1 className="font-display text-[clamp(3.5rem,9vw,6.5rem)] leading-[0.95] tracking-tight text-white">
-              Crafted<br />
-              <span className="italic text-emerald-gradient font-normal">Beyond</span> Time.
-            </h1>
-            <p className="mt-8 mx-auto max-w-md text-base md:text-lg text-muted-foreground/90 leading-relaxed font-display italic tracking-wide">
-              Luxury is measured in moments — and in the ten timepieces we release each decade.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4 items-center justify-center">
-              <Link to="/timepieces" className="btn-luxury">
-                Explore Collection <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link to="/craftsmanship" className="btn-ghost-luxury">
-                Discover More
-              </Link>
-            </div>
-          </div>
-          
-          {/* THE FLOATING WATCH HOUSING */}
-          <div className="relative w-full max-w-[420px] aspect-square animate-float-slow mt-4 flex items-center justify-center">
-            <div className="absolute inset-0 bg-radial from-primary-glow/20 via-transparent to-transparent blur-3xl rounded-full scale-125 pointer-events-none" />
-            <img
-              src={heroWatch}
-              alt="EMERIAL Carbon Legacy signature timepiece"
-              className="relative max-h-full w-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.95)]"
-            />
-          </div>
-        </div>
-        
-        {/* THE GLOWING SCROLL INDICATOR ARROW */}
-        <div className="relative z-20 flex flex-col items-center gap-2 text-muted-foreground mt-8 cursor-pointer select-none">
-          <span className="eyebrow text-[9px] tracking-[0.5em] opacity-80">Scroll</span>
-          <div className="h-8 w-px bg-gradient-to-b from-primary-glow to-transparent relative overflow-hidden">
-            <span className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-primary-glow to-transparent animate-scroll-hint" />
-          </div>
-          <ChevronDown className="h-3 w-3 text-primary-glow/80 animate-bounce [animation-duration:2.5s]" />
-        </div>
-      </section>
-
-      {/* STATS GRID */}
-      <section className="relative border-y border-border/60 py-20 bg-onyx">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-4 gap-12">
-          {[
-            { n: 10, s: "", label: "Signature Timepieces" },
-            { n: 3, s: "", label: "Distinct Collections" },
-            { n: 5, s: "-YR", label: "International Warranty" },
-            { n: 100, s: "%", label: "Swiss Automatic Movement" },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 100} className="text-center lg:text-left">
-              <p className="font-display text-6xl md:text-7xl text-emerald-gradient">
-                <Counter to={s.n} suffix={s.s} />
-              </p>
-              <p className="eyebrow mt-4">{s.label}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* FEATURED UNIT */}
-      <section className="relative py-32">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
-          <Reveal>
-            <div className="relative aspect-square bg-charcoal overflow-hidden group">
-              <img src={featured.image} alt={featured.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" />
-              <div className="absolute top-6 left-6 eyebrow glass px-3 py-1.5">Flagship · Regalia</div>
-            </div>
-          </Reveal>
-          
-          <Reveal delay={200}>
-            <p className="eyebrow text-primary-glow mb-6">Featured Timepiece</p>
-            <h2 className="font-display text-5xl md:text-7xl leading-none">{featured.name}</h2>
-            <p className="font-display italic text-2xl text-muted-foreground mt-4">{featured.tagline}</p>
-            <p className="mt-8 text-muted-foreground leading-relaxed max-w-lg">{featured.description}</p>
-            <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 max-w-lg">
-              {featured.specs.map((s) => (
-                <div key={s.label}>
-                  <p className="eyebrow text-[10px] mb-1">{s.label}</p>
-                  <p className="text-sm">{s.value}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <button onClick={() => setActive(featured)} className="btn-ghost-luxury">View Details</button>
-              <button onClick={() => add(featured)} className="btn-luxury">Add to Bag · {formatPrice(featured.price)}</button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* COLLECTIONS LINK GRID */}
-      <section className="relative py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
-            <p className="eyebrow text-primary-glow mb-4">The Collections</p>
-            <h2 className="font-display text-5xl md:text-7xl">Three languages,<br /><span className="italic">one voice.</span></h2>
-          </Reveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {collections.map((c, i) => (
-              <Reveal key={c.name} delay={i * 120}>
-                <Link to="/timepieces" search={{ c: c.name }} className="group relative block overflow-hidden bg-charcoal">
-                  <div className="relative overflow-hidden aspect-[4/5] md:aspect-[3/4]">
-                    <img src={c.image} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-2000 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
-                  </div>
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
-                    <p className="eyebrow text-primary-glow mb-2">{c.count} Timepieces</p>
-                    <h3 className="font-display text-3xl md:text-5xl">{c.name}</h3>
-                    <p className="font-display italic text-base md:text-xl text-muted-foreground mt-2">{c.tagline}</p>
-                    <p className="text-xs md:text-sm text-muted-foreground mt-3 max-w-md">{c.description}</p>
-                    <span className="mt-4 md:mt-6 inline-flex items-center gap-2 eyebrow text-foreground group-hover:text-primary-glow transition-colors">
-                      Discover <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CRAFTSMANSHIP ASSEMBLY FEED */}
-      <section className="relative py-32 bg-onyx">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
-          <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <img src={craftsmanshipImg} alt="Master watchmaker assembly details" loading="lazy" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-onyx/60 to-transparent" />
-            </div>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="eyebrow text-primary-glow mb-6">The Craft</p>
-            <h2 className="font-display text-5xl md:text-6xl">Ninety days.<br /><span className="italic">One watch.</span></h2>
-            <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">
-              From the first sketch to the final regulation, every EMERIAL passes through five ateliers and the hands of eleven master craftspeople.
-            </p>
-            <ol className="mt-12 space-y-8">
-              {[
-                { n: "01", t: "Design", d: "Concept sketches and CAD architecture in Genève." },
-                { n: "02", t: "Engineering", d: "Movement calibration and case prototyping." },
-                { n: "03", t: "Assembly", d: "Hand-assembled in the La Chaux-de-Fonds atelier." },
-                { n: "04", t: "Inspection", d: "1,200-hour COSC-grade certification and finishing." },
-                { n: "05", t: "Delivery", d: "Presented in a hand-lacquered oak vitrine." },
-              ].map((step, i) => (
-                <Reveal key={step.n} delay={i * 80}>
-                  <div className="grid grid-cols-[auto_1fr] gap-6 items-baseline border-b border-border/40 pb-6">
-                    <span className="font-display text-3xl text-primary-glow">{step.n}</span>
-                    <div>
-                      <p className="font-display text-2xl">{step.t}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{step.d}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* METALLURGY METRICS */}
-      <section className="relative py-32">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
-            <p className="eyebrow text-primary-glow mb-4">The Materials</p>
-            <h2 className="font-display text-5xl md:text-6xl">Chosen for centuries,<br /><span className="italic">not seasons.</span></h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { t: "Sapphire Crystal", d: "9 on the Mohs scale. Optical clarity that resists a lifetime." },
-              { t: "Carbon Composite", d: "Forged in Switzerland — lighter than titanium, stronger than steel." },
-              { t: "Titanium", d: "Aerospace-grade, hypoallergenic, warm to the skin." },
-              { t: "316L Steel", d: "Marine-grade stainless, brushed and mirror-polished by hand." },
-            ].map((m, i) => (
-              <Reveal key={m.t} delay={i * 100}>
-                <div className="group relative p-8 hairline hover:border-primary-glow transition-all duration-500 hover:-translate-y-1 hover:shadow-luxury bg-card/50 h-full">
-                  <p className="font-display text-2xl mb-3">{m.t}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{m.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY EMERIAL PROMISES */}
-      <section className="relative py-32 bg-onyx">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
-            <p className="eyebrow text-primary-glow mb-4">Why EMERIAL</p>
-            <h2 className="font-display text-5xl md:text-6xl">Five promises,<br /><span className="italic">one signature.</span></h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {[
-              { t: "Swiss Precision", d: "COSC-grade regulation." },
-              { t: "Premium Materials", d: "Sapphire, gold, carbon." },
-              { t: "Luxury Packaging", d: "Hand-lacquered oak vitrine." },
-              { t: "Worldwide Shipping", d: "Complimentary, insured." },
-              { t: "5-Year Warranty", d: "International concierge." },
-            ].map((w, i) => (
-              <Reveal key={w.t} delay={i * 80}>
-                <div className="p-8 hairline text-center h-full flex flex-col items-center bg-card/40">
-                  <p className="font-display text-xl mb-2">{w.t}</p>
-                  <p className="text-xs text-muted-foreground">{w.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EDITORIAL QUOTE CANVAS */}
-      <section className="relative py-40 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <p className="font-display text-[24vw] leading-none text-primary/[0.04] whitespace-nowrap select-none">TIMELESS</p>
-        </div>
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <Reveal>
-            <p className="eyebrow text-primary-glow mb-8">The EMERIAL Experience</p>
-            <p className="font-display text-4xl md:text-6xl leading-[1.1]">
-              A watch does not tell time.<br />
-              <span className="italic text-emerald-gradient">It composes it.</span>
-            </p>
-            <p className="mt-8 text-muted-foreground max-w-xl mx-auto">
-              Each EMERIAL is numbered, registered, and accompanied by a certificate signed by the master watchmaker who assembled it.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* APPOINTMENT CONCIERGE INTERFACE */}
-      <section className="relative py-32">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
-          <Reveal>
-            <p className="eyebrow text-primary-glow mb-4">The Concierge</p>
-            <h2 className="font-display text-5xl md:text-6xl">A private<br /><span className="italic">appointment.</span></h2>
-            <p className="mt-6 text-muted-foreground max-w-md">
-              Our concierge team is available for private viewings, bespoke commissions, and after-sales care.
-            </p>
-            <div className="mt-10 space-y-4 text-sm">
-              <div className="grid grid-cols-[100px_1fr] gap-4"><span className="eyebrow">Paris</span><span>1 Place Vendôme, 75001</span></div>
-              <div className="grid grid-cols-[100px_1fr] gap-4"><span className="eyebrow">Genève</span><span>Rue du Rhône 62, 1204</span></div>
-              <div className="grid grid-cols-[100px_1fr] gap-4"><span className="eyebrow">Hours</span><span>Tue — Sat · 10:00 — 19:00</span></div>
-              <div className="grid grid-cols-[100px_1fr] gap-4"><span className="eyebrow">Contact</span><span>concierge@emerial.watch</span></div>
-            </div>
-          </Reveal>
-          
-          <Reveal delay={150}>
-            <form onSubmit={(e) => e.preventDefault()} className="glass p-8 md:p-10 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <input placeholder="First name" className="bg-transparent border-b border-border py-3 text-sm outline-none focus:border-primary-glow transition-colors" />
-                <input placeholder="Last name" className="bg-transparent border-b border-border py-3 text-sm outline-none focus:border-primary-glow transition-colors" />
-              </div>
-              <input type="email" placeholder="Email" className="w-full bg-transparent border-b border-border py-3 text-sm outline-none focus:border-primary-glow transition-colors" />
-              <input placeholder="Timepiece of interest" className="w-full bg-transparent border-b border-border py-3 text-sm outline-none focus:border-primary-glow transition-colors" />
-              <textarea placeholder="Your message" rows={4} className="w-full bg-transparent border-b border-border py-3 text-sm outline-none focus:border-primary-glow transition-colors resize-none" />
-              <button className="btn-luxury w-full">Request Appointment</button>
-            </form>
-          </Reveal>
-        </div>
-      </section>
-
-      <ProductModal product={active} onClose={() => setActive(null)} />
-    </>
-  );
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-silver: var(--silver);
+  --color-charcoal: var(--charcoal);
+  --color-onyx: var(--onyx);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
+
+:root {
+  --radius: 0.25rem;
+  
+  /* Core surfaces — matte black to deep charcoal */
+  --background: oklch(0.11 0.005 200);
+  --foreground: oklch(0.97 0.005 100);
+  --onyx: oklch(0.08 0.005 200);
+  --charcoal: oklch(0.17 0.008 200);
+  --card: oklch(0.13 0.006 200);
+  --card-foreground: oklch(0.97 0.005 100);
+  --popover: oklch(0.13 0.006 200);
+  --popover-foreground: oklch(0.97 0.005 100);
+  
+  /* Emerald signature colors */
+  --primary: oklch(0.55 0.13 160);
+  --primary-foreground: oklch(0.98 0.005 100);
+  --primary-glow: oklch(0.72 0.16 162);
+  
+  --secondary: oklch(0.20 0.008 200);
+  --secondary-foreground: oklch(0.95 0.005 100);
+  --muted: oklch(0.18 0.008 200);
+  --muted-foreground: oklch(0.65 0.01 160);
+  --accent: oklch(0.55 0.13 160);
+  --accent-foreground: oklch(0.98 0.005 100);
+  --destructive: oklch(0.60 0.20 25);
+  --destructive-foreground: oklch(0.98 0.005 100);
+  
+  --border: oklch(0.25 0.008 200 / 0.6);
+  --input: oklch(0.25 0.008 200 / 0.6);
+  --ring: oklch(0.55 0.13 160);
+  --silver: oklch(0.85 0.005 200);
+
+  /* Gradients & Luxury shadows */
+  --gradient-emerald: linear-gradient(135deg, oklch(0.45 0.12 160), oklch(0.65 0.16 162));
+  --gradient-noir: linear-gradient(180deg, oklch(0.09 0.005 200), oklch(0.14 0.008 200));
+  --gradient-spotlight: radial-gradient(circle at 50% 40%, oklch(0.22 0.04 160 / 0.45), transparent 70%);
+  --shadow-luxury: 0 30px 80px -30px oklch(0 0 0 / 0.9), 0 10px 30px -10px oklch(0.55 0.13 160 / 0.15);
+  --shadow-glow: 0 0 40px oklch(0.55 0.13 160 / 0.35);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+  body::before {
+    content: "";
+    position: fixed; 
+    inset: 0;
+    background: var(--gradient-spotlight);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Custom Component Utilities */
+@utility glass {
+  background: color-mix(in oklab, var(--color-background) 55%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 8%, transparent);
+}
+@utility text-emerald-gradient {
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility hairline { border: 1px solid color-mix(in oklab, var(--color-foreground) 10%, transparent); }
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-foreground) 60%, transparent);
+}
+@utility btn-luxury {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.72rem; 
+  letter-spacing: 0.3em; 
+  text-transform: uppercase; 
+  font-weight: 500;
+  background: var(--gradient-emerald);
+  color: var(--color-primary-foreground);
+  border: 1px solid color-mix(in oklab, var(--color-primary-glow) 40%, transparent);
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  &:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+}
+@utility btn-ghost-luxury {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.72rem; 
+  letter-spacing: 0.3em; 
+  text-transform: uppercase; 
+  font-weight: 500;
+  color: var(--color-foreground);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 30%, transparent);
+  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  &:hover { border-color: var(--color-primary-glow); color: var(--color-primary-glow); }
+}
+
+/* Core Hero Animations & Custom Framework Hooks */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(0.4deg); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scroll-hint {
+  0% { transform: translateY(-6px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+@utility animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-rise { animation: rise 0.9s cubic-bezier(0.19,1,0.22,1) both; }
+@utility animate-scroll-hint { animation: scroll-hint 2s ease-in-out infinite; }
