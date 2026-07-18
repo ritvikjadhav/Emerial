@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight, Instagram, Youtube, Facebook } from "lucide-react";
 import heroWatch from "@/assets/hero-watch.jpg";
 import craftsmanshipImg from "@/assets/craftsmanship.jpg";
 import { collections, products, formatPrice, type Product } from "@/lib/products";
@@ -34,7 +34,7 @@ function Index() {
   const featured = products.find((p) => p.id === "carbon-legacy")!;
   const { add } = useCart();
 
-  // Accordion state management for mobile compressed footer directories
+  // Unified State Management for Mobile Accordions
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
@@ -44,10 +44,8 @@ function Index() {
     <>
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden pt-36 pb-20 bg-background">
-        {/* Deep Background Matte Finish - Clean High-Contrast Base */}
         <div className="absolute inset-0 pointer-events-none z-10 bg-background/10" />
         
-        {/* Floating Watch Housing Backdrop & Ambient Particles (Preserved Exactly) */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-background)_80%)] z-10" />
           <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-primary/20 blur-[140px]" />
@@ -72,12 +70,11 @@ function Index() {
             <p className="eyebrow mb-6 tracking-[0.4em] text-xs">Maison Emerial · Est. Genève</p>
             <h1 className="font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.95] tracking-tight text-white">
               Crafted<br />
-              <span className="italic text-emerald-gradient font-normal">Beyond</span> Time.
+              <span className="italic text-emerald-gradient font-normal pe-4 inline-block">Beyond</span> Time.
             </h1>
             <p className="mt-8 max-w-md mx-auto lg:mx-0 text-base md:text-lg text-muted-foreground/90 leading-relaxed font-display italic tracking-wide">
               Luxury is measured in moments — and in the ten timepieces we release each decade.
             </p>
-            {/* Fix Button Stacking: Side-by-Side Premium Layout */}
             <div className="mt-10 flex flex-row flex-wrap items-center justify-center lg:justify-start gap-6">
               <Link to="/timepieces" className="btn-luxury">
                 Explore Collection
@@ -88,7 +85,6 @@ function Index() {
             </div>
           </div>
           
-          {/* Floating Watch Housing System (Preserved Exactly) */}
           <div className="relative aspect-square animate-float-slow max-w-[450px] mx-auto w-full">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent blur-3xl" />
             <img
@@ -99,19 +95,17 @@ function Index() {
           </div>
         </div>
         
-        {/* Adjusted Scroll Element Spacing (Avoids Boundary Intersection Layout Issues) */}
-        <div className="relative z-20 flex flex-col items-center gap-2 text-muted-foreground mt-8 cursor-pointer select-none">
-          <span className="eyebrow text-[9px] tracking-[0.5em] opacity-80">Scroll</span>
-          <div className="h-8 w-px bg-gradient-to-b from-muted/40 to-transparent relative overflow-hidden">
-            <span className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-foreground/40 to-transparent animate-scroll-hint" />
+        <div className="relative z-20 flex flex-col items-center gap-2 text-primary-glow mt-8 cursor-pointer select-none">
+          <span className="eyebrow text-[9px] tracking-[0.5em] text-primary-glow opacity-100 font-bold">Scroll</span>
+          <div className="h-8 w-px bg-gradient-to-b from-primary-glow to-transparent relative overflow-hidden">
+            <span className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-primary-glow via-emerald-400 to-transparent animate-scroll-hint" />
           </div>
-          <ChevronDown className="h-3 w-3 text-muted/60 animate-bounce [animation-duration:2.5s]" />
+          <ChevronDown className="h-4 w-4 text-primary-glow opacity-100 shadow-[0_0_10px_rgba(45,212,168,0.4)] animate-bounce [animation-duration:2.5s]" />
         </div>
       </section>
 
       {/* 2. STATS GRID */}
       <section className="relative border-y border-border/40 py-16 bg-onyx">
-        {/* Reorganized Grid: 2x2 Clean Balanced Mobile Configuration */}
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {[
             { n: 10, s: "", label: "Signature Timepieces" },
@@ -123,7 +117,6 @@ function Index() {
               <p className="font-display text-5xl md:text-7xl text-emerald-gradient">
                 <Counter to={s.n} suffix={s.s} />
               </p>
-              {/* Balanced Typography Label Scaling */}
               <p className="font-sans text-[10px] uppercase tracking-widest text-muted-foreground mt-3 font-medium">
                 {s.label}
               </p>
@@ -136,7 +129,6 @@ function Index() {
       <section className="relative py-24">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
           <Reveal>
-            {/* Clickable Card Interface: Entire Image Frame Acts as Modal Trigger */}
             <div onClick={() => setActive(featured)} className="relative aspect-square bg-charcoal overflow-hidden group cursor-pointer border border-border/30">
               <img src={featured.image} alt={featured.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[2000ms] group-hover:scale-103" />
               <div className="absolute top-6 left-6 eyebrow glass px-3 py-1.5">Flagship · Regalia</div>
@@ -149,7 +141,6 @@ function Index() {
             <p className="font-display italic text-2xl text-muted-foreground mt-4">{featured.tagline}</p>
             <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">{featured.description}</p>
             
-            {/* Technical Specifications: Micro-grid separation via razor thin lines */}
             <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-6 max-w-lg border-t border-border/30 pt-6">
               {featured.specs.map((s, idx) => (
                 <div key={s.label} className={`pb-2 ${idx < 2 ? 'border-b border-border/20' : ''}`}>
@@ -159,7 +150,6 @@ function Index() {
               ))}
             </div>
             
-            {/* Consolidate Call-To-Actions: Lone Emerald Purchase System */}
             <div className="mt-8">
               <button onClick={() => add(featured)} className="btn-luxury w-full md:w-auto px-12">
                 Add to Bag · {formatPrice(featured.price)}
@@ -189,7 +179,6 @@ function Index() {
                     <p className="eyebrow text-primary-glow mb-2">{c.count} Timepieces</p>
                     <h3 className="font-display text-3xl md:text-4xl">{c.name}</h3>
                     <p className="font-display italic text-base md:text-lg text-muted-foreground mt-1">{c.tagline}</p>
-                    {/* Elevated Mobile Scanning: Hidden descriptions on small mobile screen viewports */}
                     <p className="hidden md:block text-xs text-muted-foreground/80 mt-3 max-w-md leading-relaxed">{c.description}</p>
                     <span className="mt-4 inline-flex items-center gap-2 eyebrow text-foreground group-hover:text-primary-glow transition-colors">
                       Discover <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
@@ -228,7 +217,6 @@ function Index() {
 
       {/* 6. EDITORIAL QUOTE CANVAS */}
       <section className="relative py-32 overflow-hidden bg-background">
-        {/* Removed giant watermarks completely on mobile layout blocks */}
         <div className="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none z-10">
           <p className="font-display text-[22vw] leading-none text-foreground/[0.02] tracking-widest whitespace-nowrap select-none">TIMELESS</p>
         </div>
@@ -266,7 +254,6 @@ function Index() {
           <Reveal delay={150}>
             <form onSubmit={(e) => e.preventDefault()} className="glass p-8 md:p-12 space-y-8">
               <div className="grid grid-cols-2 gap-6">
-                {/* Inputs engineered with refined bottom padding (pb-3) to offset underline overlaps */}
                 <input placeholder="First name" className="bg-transparent border-b border-border/40 pb-3 text-sm outline-none focus:border-primary-glow text-white transition-colors" />
                 <input placeholder="Last name" className="bg-transparent border-b border-border/40 pb-3 text-sm outline-none focus:border-primary-glow text-white transition-colors" />
               </div>
@@ -274,7 +261,6 @@ function Index() {
               <input placeholder="Timepiece of interest" className="w-full bg-transparent border-b border-border/40 pb-3 text-sm outline-none focus:border-primary-glow text-white transition-colors" />
               <textarea placeholder="Your message" rows={3} className="w-full bg-transparent border-b border-border/40 pb-3 text-sm outline-none focus:border-primary-glow text-white transition-colors resize-none" />
               
-              {/* Refined Luxury Interactive CTA Button: Monochrome styling shifting to emerald glow on interaction */}
               <button className="w-full py-4 text-xs font-medium uppercase tracking-widest text-black bg-white border border-white transition-all duration-300 hover:bg-transparent hover:text-white hover:border-primary-glow hover:shadow-[0_0_30px_rgba(45,212,168,0.25)] cursor-pointer">
                 Request Appointment
               </button>
@@ -283,57 +269,46 @@ function Index() {
         </div>
       </section>
 
-      {/* 8. BRAND FOOTER */}
-      <footer className="relative border-t border-border/30 bg-onyx py-16">
+      {/* 8. HIGH-END BRAND FOOTER (UNIFIED & OPTIMIZED LUXURY SYSTEM) */}
+      <footer className="relative bg-black pt-16 pb-10 overflow-hidden select-none">
+        {/* Continuous Ultra-Thin Razor Accent Accentuating structural clean breaks */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-glow/60 to-transparent" />
+
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 mb-12">
-            <div className="md:col-span-1">
-              <p className="font-display text-2xl tracking-wider text-white">EMERIAL</p>
-              <p className="text-[11px] text-muted-foreground mt-2 uppercase tracking-widest">Est. Genève</p>
+          {/* Main Informational Layout Matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-y-2 md:gap-x-8 lg:gap-x-12 pb-12">
+            
+            {/* Elegant Branding Capsule */}
+            <div className="md:col-span-1 flex flex-col items-start mb-8 md:mb-0">
+              <Link to="/" className="font-display text-2xl tracking-[0.25em] text-white hover:text-primary-glow transition-colors duration-300">
+                EMERIAL
+              </Link>
+              <p className="text-[9px] text-muted-foreground/60 mt-2 uppercase tracking-[0.4em] font-medium">Maison de Haute Horlogerie</p>
             </div>
 
-            {/* Compressed Mobile Directories via Custom Interactive Accordion Triggers */}
+            {/* Seamless Responsive Structural Columns & Adaptive Device Drawers */}
             {[
-              { id: "explore", title: "Explore", links: ["Our Heritage", "The Manufacture", "News & Events", "Bespoke Services"] },
-              { id: "collections", title: "Collections", links: ["Regalia Flagship", "Chronograph Edition", "Minimalist Automatic", "Limited Releases"] },
-              { id: "support", title: "Support", links: ["Book Service", "Care & Maintenance", "Certificate Registry", "Private Concierge"] },
-              { id: "legal", title: "Legal", links: ["Privacy Directive", "Terms of Use", "Cookie Settings", "Traceability Index"] }
+              { id: "explore", title: "Explore", links: [{ label: "Our Heritage", to: "/craftsmanship" }, { label: "The Manufacture", to: "/craftsmanship" }, { label: "Bespoke Services", to: "/timepieces" }] },
+              { id: "collections", title: "Collections", links: [{ label: "Regalia Flagship", to: "/timepieces" }, { label: "Chronograph Edition", to: "/timepieces" }, { label: "Minimalist Automatic", to: "/timepieces" }] },
+              { id: "support", title: "Support", links: [{ label: "Book Service", to: "/timepieces" }, { label: "Care & Maintenance", to: "/craftsmanship" }, { label: "Private Concierge", to: "/timepieces" }] },
+              { id: "legal", title: "Legal", links: [{ label: "Privacy Directive", to: "/" }, { label: "Terms of Use", to: "/" }, { label: "Traceability Index", to: "/" }] }
             ].map((dir) => (
-              <div key={dir.id} className="border-b border-border/20 md:border-b-0 pb-4 md:pb-0">
+              <div key={dir.id} className="border-b border-border/10 md:border-b-0 py-3 md:py-0 transition-all duration-300">
+                {/* Accordion Controller Element for Mobile Form Factors */}
                 <button 
                   onClick={() => toggleSection(dir.id)} 
-                  className="w-full md:w-auto flex flex-row items-center justify-between text-left md:pointer-events-none cursor-pointer group"
+                  className="w-full flex flex-row items-center justify-between text-left md:pointer-events-none cursor-pointer group focus:outline-none"
                 >
-                  <span className="eyebrow text-white text-[10px] font-semibold">{dir.title}</span>
-                  <ChevronDown className={`h-3 w-3 text-muted-foreground transition-transform duration-300 md:hidden ${expandedSection === dir.id ? 'rotate-180' : ''}`} />
+                  <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-white group-hover:text-primary-glow transition-colors duration-300">
+                    {dir.title}
+                  </span>
+                  <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-350 ease-out md:hidden ${expandedSection === dir.id ? 'rotate-180 text-primary-glow' : ''}`} />
                 </button>
                 
-                <ul className={`mt-4 space-y-2.5 text-xs text-muted-foreground transition-all duration-300 overflow-hidden md:h-auto md:opacity-100 ${expandedSection === dir.id ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0 md:max-h-none'}`}>
+                {/* Link Collection Layer - Perfectly Timed Smooth Animation Flow */}
+                <ul className={`mt-0 md:mt-5 space-y-3.5 text-xs text-muted-foreground transition-all duration-350 ease-in-out overflow-hidden md:h-auto md:max-h-none md:opacity-100 ${expandedSection === dir.id ? 'max-h-48 pt-3 pb-2 opacity-100' : 'max-h-0 opacity-0 md:opacity-100'}`}>
                   {dir.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="hover:text-primary-glow transition-colors">{link}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="pt-8 border-t border-border/20 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-[11px] text-muted-foreground tracking-wide">&copy; 2026 Maison Emerial SA. All rights reserved.</p>
-            
-            {/* Minimalist Bare Social Handles (Boxed Layout Containers Stripped Entirely) */}
-            <div className="flex flex-row items-center gap-8 text-muted-foreground text-xs font-sans tracking-widest">
-              <a href="#" className="hover:text-white transition-colors uppercase text-[10px]">Instagram</a>
-              <a href="#" className="hover:text-white transition-colors uppercase text-[10px]">YouTube</a>
-              <a href="#" className="hover:text-white transition-colors uppercase text-[10px]">Pinterest</a>
-              <a href="#" className="hover:text-white transition-colors uppercase text-[10px]">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <ProductModal product={active} onClose={() => setActive(null)} />
-    </>
-  );
-}
+                    <li key={link.label}>
+                      <Link to={link.to} className="inline-block relative font-sans text-[11px] tracking-wide text-muted-foreground hover:text-white transition-colors duration-300 before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[1px] before:bg-primary-glow hover:before:w-full before:transition-all before:duration-300">
+                        {link.label}
+           
