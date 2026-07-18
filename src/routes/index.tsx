@@ -311,4 +311,37 @@ function Index() {
                     <li key={link.label}>
                       <Link to={link.to} className="inline-block relative font-sans text-[11px] tracking-wide text-muted-foreground hover:text-white transition-colors duration-300 before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[1px] before:bg-primary-glow hover:before:w-full before:transition-all before:duration-300">
                         {link.label}
-           
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Micro-Accented Lower Ground Area */}
+          <div className="pt-8 border-t border-border/10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="text-[10px] text-muted-foreground/60 tracking-wider font-sans text-center md:text-left">
+              &copy; 2026 Maison Emerial SA. Crafted Beyond Time. Swiss Made.
+            </p>
+            
+            {/* Functional, Premium Social Footprint Elements */}
+            <div className="flex flex-row items-center gap-6 text-muted-foreground">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Emerial on Instagram" className="p-2 -m-2 text-muted-foreground hover:text-primary-glow transition-colors duration-300">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Emerial on YouTube" className="p-2 -m-2 text-muted-foreground hover:text-primary-glow transition-colors duration-300">
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Emerial on Facebook" className="p-2 -m-2 text-muted-foreground hover:text-primary-glow transition-colors duration-300">
+                <Facebook className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <ProductModal product={active} onClose={() => setActive(null)} />
+    </>
+  );
+}
