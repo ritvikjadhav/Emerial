@@ -43,7 +43,7 @@ function Index() {
   return (
     <>
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden pt-36 pb-24 bg-background">
+      <section className="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden pt-36 pb-20 bg-background">
         {/* Deep Background Matte Finish - Clean High-Contrast Base */}
         <div className="absolute inset-0 pointer-events-none z-10 bg-background/10" />
         
@@ -100,7 +100,7 @@ function Index() {
         </div>
         
         {/* Adjusted Scroll Element Spacing (Avoids Boundary Intersection Layout Issues) */}
-        <div className="relative z-20 flex flex-col items-center gap-2 text-muted-foreground mt-12 cursor-pointer select-none">
+        <div className="relative z-20 flex flex-col items-center gap-2 text-muted-foreground mt-8 cursor-pointer select-none">
           <span className="eyebrow text-[9px] tracking-[0.5em] opacity-80">Scroll</span>
           <div className="h-8 w-px bg-gradient-to-b from-muted/40 to-transparent relative overflow-hidden">
             <span className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-foreground/40 to-transparent animate-scroll-hint" />
@@ -110,9 +110,9 @@ function Index() {
       </section>
 
       {/* 2. STATS GRID */}
-      <section className="relative border-y border-border/40 py-20 bg-onyx">
+      <section className="relative border-y border-border/40 py-16 bg-onyx">
         {/* Reorganized Grid: 2x2 Clean Balanced Mobile Configuration */}
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {[
             { n: 10, s: "", label: "Signature Timepieces" },
             { n: 3, s: "", label: "Distinct Collections" },
@@ -133,7 +133,7 @@ function Index() {
       </section>
 
       {/* 3. FEATURED UNIT */}
-      <section className="relative py-32">
+      <section className="relative py-24">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
           <Reveal>
             {/* Clickable Card Interface: Entire Image Frame Acts as Modal Trigger */}
@@ -147,12 +147,12 @@ function Index() {
             <p className="eyebrow text-primary-glow mb-4">Featured Timepiece</p>
             <h2 className="font-display text-5xl md:text-6xl leading-none">{featured.name}</h2>
             <p className="font-display italic text-2xl text-muted-foreground mt-4">{featured.tagline}</p>
-            <p className="mt-8 text-muted-foreground leading-relaxed max-w-lg">{featured.description}</p>
+            <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">{featured.description}</p>
             
             {/* Technical Specifications: Micro-grid separation via razor thin lines */}
-            <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 max-w-lg border-t border-border/30 pt-6">
+            <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-6 max-w-lg border-t border-border/30 pt-6">
               {featured.specs.map((s, idx) => (
-                <div key={s.label} className={`pb-4 ${idx < 2 ? 'border-b border-border/20' : ''}`}>
+                <div key={s.label} className={`pb-2 ${idx < 2 ? 'border-b border-border/20' : ''}`}>
                   <p className="font-sans text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-medium">{s.label}</p>
                   <p className="text-sm font-display text-white">{s.value}</p>
                 </div>
@@ -160,7 +160,7 @@ function Index() {
             </div>
             
             {/* Consolidate Call-To-Actions: Lone Emerald Purchase System */}
-            <div className="mt-10">
+            <div className="mt-8">
               <button onClick={() => add(featured)} className="btn-luxury w-full md:w-auto px-12">
                 Add to Bag · {formatPrice(featured.price)}
               </button>
@@ -170,9 +170,9 @@ function Index() {
       </section>
 
       {/* 4. COLLECTIONS LINK GRID */}
-      <section className="relative py-24">
+      <section className="relative py-20">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
             <p className="eyebrow text-primary-glow mb-4">The Collections</p>
             <h2 className="font-display text-5xl md:text-6xl">Three languages,<br /><span className="italic">one voice.</span></h2>
           </Reveal>
@@ -202,11 +202,11 @@ function Index() {
         </div>
       </section>
 
-      {/* 5. CRAFTSMANSHIP ASSEMBLY FEED */}
-      <section className="relative py-32 bg-onyx">
+      {/* 5. CRAFTSMANSHIP ASSEMBLY FEED (Teaser Edition) */}
+      <section className="relative py-24 bg-onyx">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden border border-border/30">
+            <div className="relative aspect-[4/5] max-h-[500px] overflow-hidden border border-border/30">
               <img src={craftsmanshipImg} alt="Master watchmaker assembly details" loading="lazy" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/40 to-transparent" />
             </div>
@@ -215,88 +215,19 @@ function Index() {
             <p className="eyebrow text-primary-glow mb-6">The Craft</p>
             <h2 className="font-display text-5xl md:text-6xl">Ninety days.<br /><span className="italic">One watch.</span></h2>
             <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">
-              From the first sketch to the final regulation, every EMERIAL passes through five ateliers and the hands of eleven master craftspeople.
+              From the initial architecture to the final regulation, every EMERIAL passes through five specialized Swiss ateliers and the hands of eleven master craftspeople. Our legacy is defined by rigorous manual precision.
             </p>
-            <ol className="mt-12 space-y-6">
-              {[
-                { n: "01", t: "Design", d: "Concept sketches and CAD architecture in Genève." },
-                { n: "02", t: "Engineering", d: "Movement calibration and case prototyping." },
-                { n: "03", t: "Assembly", d: "Hand-assembled in the La Chaux-de-Fonds atelier." },
-                { n: "04", t: "Inspection", d: "1,200-hour COSC-grade certification and finishing." },
-                { n: "05", t: "Delivery", d: "Presented in a hand-lacquered oak vitrine." },
-              ].map((step, i) => (
-                <Reveal key={step.n} delay={i * 80}>
-                  {/* Dominant Typography Contrast: Step Titles dominant over layout digits */}
-                  <div className="grid grid-cols-[36px_1fr] gap-4 items-baseline border-b border-border/20 pb-5">
-                    <span className="font-sans text-xs tracking-wider text-primary-glow/60 font-medium">{step.n}</span>
-                    <div>
-                      <p className="font-display text-2xl text-foreground font-medium">{step.t}</p>
-                      <p className="text-sm text-muted-foreground mt-1 max-w-md leading-relaxed">{step.d}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
+            <div className="mt-10">
+              <Link to="/craftsmanship" className="btn-luxury inline-block text-center w-full md:w-auto px-10">
+                Discover Craftsmanship
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 6. METALLURGY METRICS */}
-      <section className="relative py-32">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
-            <p className="eyebrow text-primary-glow mb-4">The Materials</p>
-            <h2 className="font-display text-5xl md:text-6xl">Chosen for centuries,<br /><span className="italic">not seasons.</span></h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { t: "Sapphire Crystal", d: "9 on the Mohs scale. Optical clarity that resists a lifetime." },
-              { t: "Carbon Composite", d: "Forged in Switzerland — lighter than titanium, stronger than steel." },
-              { t: "Titanium", d: "Aerospace-grade, hypoallergenic, warm to the skin." },
-              { t: "316L Steel", d: "Marine-grade stainless, brushed and mirror-polished by hand." },
-            ].map((m, i) => (
-              <Reveal key={m.t} delay={i * 100}>
-                {/* Structural Minimalism Cleanup: Placeholder icon systems removed completely */}
-                <div className="group relative p-8 border border-border/30 bg-card/30 h-full transition-all duration-500 hover:border-foreground/30">
-                  <p className="font-display text-2xl mb-3 text-white">{m.t}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{m.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY EMERIAL PROMISES */}
-      <section className="relative py-32 bg-onyx">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal className="text-center max-w-2xl mx-auto mb-20">
-            <p className="eyebrow text-primary-glow mb-4">Why EMERIAL</p>
-            <h2 className="font-display text-5xl md:text-6xl">Five promises,<br /><span className="italic">one signature.</span></h2>
-          </Reveal>
-          
-          {/* Tightened Feed Layout: Modern alternating grid structure replacing distinct app card blocks */}
-          <div className="max-w-4xl mx-auto space-y-12">
-            {[
-              { t: "Swiss Precision", d: "Every movement undergoes rigid COSC-grade regulation testing across 1,200 continuous hours." },
-              { t: "Premium Materials", d: "Exclusively utilizing unblemished sapphire crystal, high-carat gold, and specialized carbon matrix configurations." },
-              { t: "Luxury Packaging", d: "Each order arrives anchored within a customized, hand-lacquered solid oak presentation vitrine case." },
-              { t: "Worldwide Shipping", d: "Fully complimentary, door-to-door courier logistics integrated with absolute comprehensive insurance." },
-              { t: "5-Year Warranty", d: "Instant entry into our international concierge catalog network for continuous lifetime component upkeep." },
-            ].map((w, i) => (
-              <Reveal key={w.t} delay={i * 80}>
-                <div className="grid md:grid-cols-[250px_1fr] gap-4 md:gap-12 pb-8 border-b border-border/20 last:border-b-0 items-start">
-                  <p className="font-display text-xl text-white md:text-right font-medium">{w.t}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{w.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. EDITORIAL QUOTE CANVAS */}
-      <section className="relative py-40 overflow-hidden bg-background">
+      {/* 6. EDITORIAL QUOTE CANVAS */}
+      <section className="relative py-32 overflow-hidden bg-background">
         {/* Removed giant watermarks completely on mobile layout blocks */}
         <div className="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none z-10">
           <p className="font-display text-[22vw] leading-none text-foreground/[0.02] tracking-widest whitespace-nowrap select-none">TIMELESS</p>
@@ -315,8 +246,8 @@ function Index() {
         </div>
       </section>
 
-      {/* 9. APPOINTMENT CONCIERGE INTERFACE */}
-      <section className="relative py-32 border-t border-border/20">
+      {/* 7. APPOINTMENT CONCIERGE INTERFACE */}
+      <section className="relative py-24 border-t border-border/20">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
           <Reveal>
             <p className="eyebrow text-primary-glow mb-4">The Concierge</p>
@@ -352,10 +283,10 @@ function Index() {
         </div>
       </section>
 
-      {/* 10. BRAND FOOTER */}
-      <footer className="relative border-t border-border/30 bg-onyx py-20">
+      {/* 8. BRAND FOOTER */}
+      <footer className="relative border-t border-border/30 bg-onyx py-16">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 mb-12">
             <div className="md:col-span-1">
               <p className="font-display text-2xl tracking-wider text-white">EMERIAL</p>
               <p className="text-[11px] text-muted-foreground mt-2 uppercase tracking-widest">Est. Genève</p>
