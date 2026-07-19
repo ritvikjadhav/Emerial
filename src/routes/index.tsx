@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, ArrowRight, Instagram, Youtube, Facebook } from "lucide-react";
 import heroWatch from "@/assets/hero-watch.jpg";
-import craftsmanshipImg from "@/assets/craftsmanship.jpg";
+import craftsmanshipImg from "@/assets/craftsmanship.png";
 import { collections, products, formatPrice, type Product } from "@/lib/products";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { ProductModal } from "@/components/site/ProductModal";
