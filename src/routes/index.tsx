@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, ArrowRight, Instagram, Youtube, Facebook } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import heroWatch from "@/assets/hero-watch.png";
 import craftsmanshipImg from "@/assets/craftsmanship.png";
 import { collections, products, formatPrice, type Product } from "@/lib/products";
@@ -95,12 +95,24 @@ function Index() {
           </div>
         </div>
         
-        <div className="relative z-20 flex flex-col items-center gap-2 text-primary-glow mt-8 cursor-pointer select-none">
-          <span className="eyebrow text-[9px] tracking-[0.5em] text-primary-glow opacity-100 font-bold">Scroll</span>
-          <div className="h-8 w-px bg-gradient-to-b from-primary-glow to-transparent relative overflow-hidden">
-            <span className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-primary-glow via-emerald-400 to-transparent animate-scroll-hint" />
+        {/* EDIT: CLEAN SCROLL INDICATOR WITH DOWNWARD GLOW */}
+        <div className="relative z-20 flex flex-col items-center gap-2 mt-8 cursor-pointer select-none">
+          <span className="eyebrow text-[9px] tracking-[0.5em] text-primary-glow font-bold uppercase">
+            Scroll
+          </span>
+
+          <div className="relative flex flex-col items-center">
+            {/* Line with animated gradient ray */}
+            <div className="h-10 w-px bg-gradient-to-b from-primary-glow via-primary-glow/50 to-transparent relative overflow-hidden">
+              <span className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-white via-primary-glow to-transparent animate-scroll-hint" />
+            </div>
+
+            {/* Fading glow aura pointing downwards */}
+            <div className="absolute top-4 w-12 h-16 bg-gradient-to-b from-primary-glow/30 via-primary-glow/10 to-transparent blur-md pointer-events-none rounded-full" />
+
+            {/* Arrow with rich drop-shadow glow (No box outline) */}
+            <ChevronDown className="h-5 w-5 text-primary-glow relative z-10 animate-bounce [animation-duration:2.2s] drop-shadow-[0_4px_14px_rgba(45,212,168,0.9)]" />
           </div>
-          <ChevronDown className="h-4 w-4 text-primary-glow opacity-100 shadow-[0_0_10px_rgba(45,212,168,0.4)] animate-bounce [animation-duration:2.5s]" />
         </div>
       </section>
 
